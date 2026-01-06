@@ -1,6 +1,71 @@
-local RpelicatedStorage = game:GetService("ReplicatedStorage")
-
-
-local Position = {}
-
+local Position = {
+mobile = {
+  Rebirth = { 
+   openRebirthButtonP = ""
+   openRebiethButtonS = ""
+  },
+  Clicker = {
+   ClickForClicksButtonP = ""
+   ClickForClicksButtonS = ""
+   autoClickButtonP = ""
+   autoClickButtonS = ""
+  },
+  Inventory = {
+  OpeninventoryButtonP = ""
+  OpeninventoryButtonS = ""
+  }
+ },
+pc = {
+  Rebirth = { 
+   openRebirthButtonP = ""
+   openRebiethButtonS = ""
+  },
+  Clicker = {
+   ClickForClicksButtonP = ""
+   ClickForClicksButtonS = ""
+   autoClickButtonP = ""
+   autoClickButtonS = ""
+  },
+  Inventory = {
+  OpeninventoryButtonP = ""
+  OpeninventoryButtonS = ""
+  }
+},
+console = {
+  Rebirth = { 
+   openRebirthButtonP = ""
+   openRebiethButtonS = ""
+  },
+  Clicker = {
+   ClickForClicksButtonP = ""
+   ClickForClicksButtonS = ""
+   autoClickButtonP = ""
+   autoClickButtonS = ""
+  },
+  Inventory = {
+  OpeninventoryButtonP = ""
+  OpeninventoryButtonS = ""
+  }
+}
+}
 return Position
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
