@@ -1,0 +1,12 @@
+local UserInput = game:GetService("UserInputService")
+local replicatedStorage = game:GetService("ReplicatedStorage")
+
+local Player = game:GetService("Players")
+local Frame
+
+
+UserInput.InputBegan:connect(function(input)
+if input.Keycode = Enum.Keycode.F then
+
+ end
+end)
