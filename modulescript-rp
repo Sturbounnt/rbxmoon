@@ -1,0 +1,6 @@
+local RpelicatedStorage = game:GetService("ReplicatedStorage")
+
+
+local Position = {}
+
+return Position
