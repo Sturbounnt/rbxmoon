@@ -2,7 +2,8 @@ local UserInput = game:GetService("UserInputService")
 local replicatedStorage = game:GetService("ReplicatedStorage")
 
 local Player = game:GetService("Players")
-local Frame
+local LocalPlayer = Player.LocalPlayer
+local Frame = 
 
 
 UserInput.InputBegan:connect(function(input)
