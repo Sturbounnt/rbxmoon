@@ -1,0 +1,15 @@
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Event = ReplicatedStorage:WaitForChild("RemotesEVENTS").InterfaceClicker.RebirthEvents:WaitForChild("AtServerEvent")
+
+local Player = game:GetService("Players")
+local LocalPlayer = Player.LocalPlayer
+
+local LeadStats_Player = LocalPlayer:WaitForChild("leaderstats")
+
+local Lead_ClickValue = LeadStats_Player.Click
+local Lead_GemValue = LeadStats_Player.Gems
+local Lead_RebirthsValue = LeadStats_Player.Rebirth
+
+Event.OnServerEvent:Connect(function(RebirthIncress)
+	Lead_ClickValue -= 200
+end)
