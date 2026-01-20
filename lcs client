@@ -10,13 +10,13 @@ local RebirthValue = LeadStats:WaitForChild("Rebirth")
 
 local UiServerStorage = ReplicatedStorage:WaitForChild("Ui", 10)
 if not UiServerStorage then
-	warn("Reload game.. 1")
+	Player:kick("Error 001 contact a one moderator")
 	return
 end
 
 local GuiUiServerStorage = UiServerStorage:WaitForChild("Gui", 10)
 if not GuiUiServerStorage then
-	warn("Reload Game.. 2")
+	Player:kick("Error 001 contact a one moderator")
 	return
 end
 
