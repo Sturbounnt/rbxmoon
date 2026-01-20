@@ -1,0 +1,105 @@
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local ModuleClickerMultiplier = require(ReplicatedStorage.Modules.Clicker:WaitForChild("ClickerMultiplier"))
+
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+local LeadStats = LocalPlayer:WaitForChild("leaderstats", 10)
+if not LeadStats then return end
+
+local RebirthValue = LeadStats:WaitForChild("Rebirth")
+
+local UiServerStorage = ReplicatedStorage:WaitForChild("Ui", 10)
+if not UiServerStorage then
+	warn("Reload game.. 1")
+	return
+end
+
+local GuiUiServerStorage = UiServerStorage:WaitForChild("Gui", 10)
+if not GuiUiServerStorage then
+	warn("Reload Game.. 2")
+	return
+end
+
+local ButtonIncressRebirth_Button = script.Parent.Parent:WaitForChild("RebirthUI"):WaitForChild("IncressRebirthButon")
+
+local Button_Left_impar = GuiUiServerStorage.Button_Left_impar
+local Button_Right_pair =  GuiUiServerStorage.Button_Right_pair
+
+local Buttons = {Button_Left_impar:WaitForChild("Button_Left_impar"),
+	Button_Right_pair:WaitForChild("Button_Right_pair")
+}
+
+local ScrollingFrame = script	.Parent.Parent:WaitForChild("RebirthUI").Frame.ScrollingFrame
+
+local Left = ScrollingFrame:WaitForChild("Left")
+local Right = ScrollingFrame:WaitForChild("Right")
+
+local RebirthIncress
+local CLickerIncress
+
+local function RebirthPriceStats ()
+	if RebirthValue.Value >= 1 then
+	RebirthIncress = tonumber(2)
+	print("Player doesn't have 1 or 0 Rebirth.")
+		elseif RebirthValue.Value <= 1 then
+	RebirthIncress = tonumber(0)
+	print("Player Doesnt have 1+ Rebirth.")
+	end
+end
+
+for i, Button in ipairs(Buttons) do
+	Buttons.Activated:Connect(RebirthPriceStats())
+	print("Activated")
+end
+--local FirstPrice = 250-- RebirthIncress
+
+--  local Event = ReplicatedStorage:WaitForChild("RemotesEVENTS").InterfaceClicker.RebirthEvents:WaitForChild("AtServerEvent")
+print("27Ok")
+
+local NumberSett 
+
+local value = 1
+local function Math (IncressNumber)
+		local IncressNumber = 1.
+		local n = tonumber(value +1)
+if not n then return end
+		if n % 2 == 0 then
+	NumberSett = "Pair"
+	value = "0"
+			else
+	NumberSett = "Impair"
+	value = "1"
+			end
+end
+
+print("51 Ok")
+local ClickMultiplier_AtRebirthValue = ModuleClickerMultiplier.BaseClicker * 5 
+
+local Player = game:GetService("Players")
+local LocalPlayer = Player.LocalPlayer
+
+local LeadStats_Player = LocalPlayer.leaderstats
+
+local Lead_ClickValue = LeadStats_Player.Click
+local Lead_GemValue = LeadStats_Player.Gems
+local Lead_RebirthsValue = LeadStats_Player.Rebirth
+
+ButtonIncressRebirth_Button.Activated:Connect(function(ButtonClone_Right, ButtonClone_Left)
+	Math()
+	if NumberSett == "Pair" then
+	local ButtonClone_Right = Button_Right_pair:Clone()
+		ButtonClone_Right.Parent = Right
+	print("Pair, Created.")
+else
+	local ButtonClone_Left = Button_Left_impar:Clone()
+		ButtonClone_Left.Parent = Left
+		ButtonClone_Left:WaitForChild("Rebirth_")
+		print("Impair, Created.")
+	end
+end)
+
+if Lead_ClickValue.Value >= 200 then
+	Rebirth_Button.Activated:Connect(function(RebirthIncress, input)
+		Lead_ClickValue.Value -= 200
+	end)
+end
