@@ -37,12 +37,22 @@ local Right = ScrollingFrame:WaitForChild("Right")
 local RebirthIncress
 local CLickerIncress
 
+local Db = False
+
 local function RebirthPriceStats ()
 	if RebirthValue.Value >= 1 then
-	RebirthIncress = tonumber(2)
+	RebirthIncress = tonumber(250) * tonumber(RebirthValue.Value)
 	print("Player doesn't have 1 or 0 Rebirth.")
 		elseif RebirthValue.Value <= 1 then
+   RebirthIncress = tonumber(250) * +=1 
 	RebirthIncress = tonumber(0)
+if Db then 
+ RebirthIncress + 1
+else 
+if RebirthIncress <= 2 then return end
+end
+   Db = true
+    
 	print("Player Doesnt have 1+ Rebirth.")
 	end
 end
