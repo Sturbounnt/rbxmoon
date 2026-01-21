@@ -54,7 +54,7 @@ end
 --local FirstPrice = 250-- RebirthIncress
 
 --  local Event = ReplicatedStorage:WaitForChild("RemotesEVENTS").InterfaceClicker.RebirthEvents:WaitForChild("AtServerEvent")
-print("27Ok")
+print("27 = Ok")
 
 local NumberSett 
 
