@@ -1,0 +1,189 @@
+local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local StarterGui = game:GetService("StarterGui")
+
+local localPlayer = Players.LocalPlayer
+local PlayerGui = localPlayer:WaitForChild("PlayerGui")
+
+
+
+local function CreateFirstUi()
+	if PlayerGui:FindFirstChild("ExecutorDisplay") then
+		return
+	end
+
+	local screenGui = Instance.new("ScreenGui")
+	screenGui.Name = "ExecutorDisplay"
+	screenGui.IgnoreGuiInset = true
+
+	local frameP = Instance.new("Frame")
+	frameP.Name = "ExecutorFrame"
+	frameP.Size = UDim2.fromScale(0.184, 0.363)
+	frameP.Position = UDim2.fromScale(0.223, 0.086)
+	frameP.BackgroundColor3 = Color3.new(1, 1, 1)
+	frameP.BackgroundTransparency = 0.2
+	frameP.Parent = screenGui
+
+	local cornerMain = Instance.new("UICorner")
+	cornerMain.CornerRadius = UDim.new(0, 14)
+	cornerMain.Parent = frameP
+
+	local FrameU1 = Instance.new("Frame")
+	FrameU1.Name = "Dashbord_Ex"
+	FrameU1.Size = UDim2.fromScale(1, 0.1)
+	FrameU1.Position = UDim2.fromScale(0, 0)
+	FrameU1.BackgroundTransparency = 0.1
+	FrameU1.BackgroundColor3 = Color3.new(1, 1, 1)
+	FrameU1.Parent = frameP
+
+	local cornerDash = Instance.new("UICorner")
+	cornerDash.CornerRadius = UDim.new(0, 5)
+	cornerDash.Parent = FrameU1
+
+	local FrameButtons = Instance.new("Frame")
+	FrameButtons.Name = "Frame_Track"
+	FrameButtons.Size = UDim2.fromScale(0.09, 1)
+	FrameButtons.Position = UDim2.fromScale(1, 0)
+	FrameButtons.AnchorPoint = Vector2.new(1, 0)
+	FrameButtons.BackgroundColor3 = Color3.new(1, 0, 1)
+	FrameButtons.Parent = FrameU1
+
+	local cornerButtons = Instance.new("UICorner")
+	cornerButtons.CornerRadius = UDim.new(0, 5)
+	cornerButtons.Parent = FrameButtons
+
+	local FrameSetts = Instance.new("TextButton")
+	FrameSetts.Name = "Frame_Setts"
+	FrameSetts.Position = UDim2.fromScale(0, 0)
+	FrameSetts.Size = UDim2.fromScale(0.09, 1)
+	FrameSetts.BackgroundColor3 = Color3.new(1, 1, 0)
+	FrameSetts.Text = ""
+	FrameSetts.Parent = FrameU1
+
+	local cornerSetts = Instance.new("UICorner")
+	cornerSetts.CornerRadius = UDim.new(0, 5)
+	cornerSetts.Parent = FrameSetts
+
+	screenGui.Parent = PlayerGui
+end
+
+local StatsDefuser = "Offline"
+
+local function GetStatsFromUi()
+	local ViewDisplay = PlayerGui:FindFirstChild("ExecutorDisplay")
+	if ViewDisplay then
+		StatsDefuser = "Online"
+	end
+end
+
+PlayerGui.ChildAdded:Connect(function(child)
+	if child.Name == "ExecutorDisplay" then
+		GetStatsFromUi()
+
+		if StatsDefuser == "Online" then
+			task.wait(0.3)
+
+			StarterGui:SetCore("SendNotification", {
+				Title = "Stur_Executor",
+				Text = "You are a Staff",
+				Duration = 4
+			})
+			local ExecutorDisplay = PlayerGui.ExecutorDisplay
+			
+			local ViewStats = child.ExecutorFrame
+			local Button = ViewStats.Dashbord_Ex.Frame_Setts
+			local frame = ViewStats.Dashbord_Ex.Frame_Track
+			local ScrollingFrame = ViewStats.Frame.Scrolling_sett
+			
+			local SetSize = ScrollingFrame.BackSize_Frame.SetSize_Frame
+			local Dashbord = ViewStats.Dashbord_Ex
+			
+			Button.Activated:Connect(function()
+				local frame = Instance.new("Frame")
+				frame.Size = UDim2.fromScale(1, 1)
+				
+				local cornerMain = Instance.new("UICorner")
+				cornerMain.CornerRadius = UDim.new(0, 5)
+				cornerMain.Parent = frame
+				
+				local ScroolFrame = Instance.new("ScrollingFrame")
+				ScroolFrame.Name = "Scrolling_sett"
+				ScroolFrame.AutomaticCanvasSize = Enum.AutomaticSize.Y
+				ScroolFrame.Size = UDim2.fromScale(0.8, 0.9)
+				ScroolFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
+				ScroolFrame.ScrollBarThickness = 0
+				ScroolFrame.AnchorPoint = Vector2.new(0,5, 0,5)
+				ScroolFrame.Position = UDim2.fromScale(0.1, 0.95)
+				ScroolFrame.BackgroundColor3 = Color3.new(1, 0, 1)
+				ScroolFrame.BackgroundTransparency = 1
+				ScroolFrame.Parent = frame
+				
+				local UiList = Instance.new("UIListLayout")
+				UiList.Padding = UDim.new(0, 12)
+				UiList.Parent = ScroolFrame
+				UiList.HorizontalAlignment = Enum.HorizontalAlignment.Center
+				
+				local BackSizeFrame = Instance.new("Frame")
+				BackSizeFrame.Name = "BackSize_Frame"
+				BackSizeFrame.Size = UDim2.fromScale(1, 0.1)
+				BackSizeFrame.BackgroundColor3 = Color3.new(0.447059, 0.45098, 0.4)
+				BackSizeFrame.BackgroundTransparency = 0.4
+				BackSizeFrame.Parent = ScroolFrame
+				
+				local SetSizeFrame = Instance.new("Frame")
+				SetSizeFrame.Name = "SetSize_Frame"
+				SetSizeFrame.Size = UDim2.fromScale(0.3, 0.9)
+				SetSizeFrame.AnchorPoint = Vector2.new(0.5, 0.5)
+				SetSizeFrame.Position = UDim2.fromScale(0.7, 0.5)
+					SetSizeFrame.Parent = BackSizeFrame
+				
+				local TextLabel = Instance.new("TextLabel")
+				TextLabel.Name = "Text_Sett"
+				TextLabel.Text = "Size"
+				TextLabel.Font = Enum.Font.FredokaOne	
+				TextLabel.TextScaled = true
+				TextLabel.TextColor3 = Color3.new(1, 1, 1)
+				TextLabel.Size = UDim2.fromScale(0.4, 1)
+				TextLabel.BackgroundTransparency = 1
+				TextLabel.Parent = BackSizeFrame
+				
+				local TextPut = Instance.new("TextLabel")
+				TextPut.Name = "Text_Put"
+				TextPut.Text = "Put Size"
+				TextPut.Font = Enum.Font.FredokaOne	
+				TextPut.TextScaled = true
+				TextPut.TextColor3 = Color3.new(1, 1, 1)
+				TextPut.Size = UDim2.fromScale(1, 1)
+				TextPut.BackgroundTransparency = 1
+				TextPut.Parent = SetSizeFrame
+				
+				local cornerMain = Instance.new("UICorner")
+				cornerMain.CornerRadius = UDim.new(0, 5)
+				cornerMain.Parent = BackSizeFrame
+				
+				local cornerMain = Instance.new("UICorner")
+				cornerMain.CornerRadius = UDim.new(0, 5)
+				cornerMain.Parent = SetSizeFrame
+				
+				SetSizeFrame.MouseEnter:Connect(function()
+					local NewSize = 
+					
+					
+					--local GetXArch = ExecutorDisplay.Size.X
+					--local GetYArch = ExecutorDisplay.Size.Y
+					
+					
+				end)
+				
+				frame.Parent = ViewStats
+			end)
+			frame.MouseEnter:Connect(function()
+
+			end)
+		end
+	end
+end)
+
+ReplicatedStorage.ex.OnClientEvent:Connect(function()
+	CreateFirstUi()
+end)
