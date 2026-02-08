@@ -157,6 +157,13 @@ PlayerGui.ChildAdded:Connect(function(child)
 				TextPut.BackgroundTransparency = 1
 				TextPut.Parent = SetSizeFrame
 				
+      local ViewLiens = Instance.new("Frame")
+      ViewLiens.Name = "ViewsLines_Ex"
+      ViewLiens.
+
+
+
+
 				local cornerMain = Instance.new("UICorner")
 				cornerMain.CornerRadius = UDim.new(0, 5)
 				cornerMain.Parent = BackSizeFrame
