@@ -5,8 +5,6 @@ local StarterGui = game:GetService("StarterGui")
 local localPlayer = Players.LocalPlayer
 local PlayerGui = localPlayer:WaitForChild("PlayerGui")
 
-
-
 local function CreateFirstUi()
 	if PlayerGui:FindFirstChild("ExecutorDisplay") then
 		return
@@ -134,6 +132,20 @@ PlayerGui.ChildAdded:Connect(function(child)
 				BackTextTypeFrame.BackgroundTransparency = 0.4
 				BackTextTypeFrame.Parent = ScroolFrame
 				
+				local CmdSettFrame = Instance.new("Frame")
+				CmdSettFrame.Name = "CMDsett_Frame"
+				CmdSettFrame.Size = UDim2.fromScale(1, 0.1)
+				CmdSettFrame.BackgroundColor3 = Color3.new(0.447059, 0.45098, 0.4)
+				CmdSettFrame.BackgroundTransparency = 0.4
+				CmdSettFrame.Parent = ScroolFrame
+				
+				local CmdSettBackFrame = Instance.new("Frame")
+				CmdSettBackFrame.Name = "ChangeCMDSett_Frame"
+				CmdSettBackFrame.Size = UDim2.fromScale(0.3, 0.9)
+				CmdSettBackFrame.Position = UDim2.fromScale(0.7, 0.5)
+				CmdSettBackFrame.AnchorPoint = Vector2.new(0.5, 0.5)
+				CmdSettBackFrame.Parent = CmdSettFrame
+				
 				local SetTextTypeFrame = Instance.new("Frame")
 				SetTextTypeFrame.Name = "SetTextType_Frame"
 				SetTextTypeFrame.Size = UDim2.fromScale(0.3, 0.9)
@@ -180,6 +192,16 @@ PlayerGui.ChildAdded:Connect(function(child)
 				TextPut.BackgroundTransparency = 1
 				TextPut.Parent = SetSizeFrame
 				
+				local cmdConfig = Instance.new("TextLabel")
+				cmdConfig.Name = "Cmdconfig"
+				cmdConfig.Text = "Change config"
+				cmdConfig.Font = Enum.Font.FredokaOne	
+				cmdConfig.TextScaled = true
+				cmdConfig.TextColor3 = Color3.new(1, 1, 1)
+				cmdConfig.Size = UDim2.fromScale(1, 1)
+				cmdConfig.BackgroundTransparency = 1
+				cmdConfig.Parent = CmdSettBackFrame
+				
 				local TextTypePut = Instance.new("TextLabel")
 				TextTypePut.Name = "TextTypePut"
 				TextTypePut.Text = "Select text type"
@@ -190,6 +212,16 @@ PlayerGui.ChildAdded:Connect(function(child)
 				TextTypePut.BackgroundTransparency = 1
 				TextTypePut.Parent = BackTextTypeFrame
 				
+				local CmdConfig = Instance.new("TextLabel")
+				CmdConfig.Name = "TextTypePut"
+				CmdConfig.Text = "Config"
+				CmdConfig.Font = Enum.Font.FredokaOne	
+				CmdConfig.TextScaled = true
+				CmdConfig.TextColor3 = Color3.new(1, 1, 1)
+				CmdConfig.Size = UDim2.fromScale(0.4, 1)
+				CmdConfig.BackgroundTransparency = 1
+				CmdConfig.Parent = CmdSettFrame
+				
 				-- == UiCornes
 				
 				local cornerMain = Instance.new("UICorner")
@@ -199,6 +231,14 @@ PlayerGui.ChildAdded:Connect(function(child)
 				local cornerMain = Instance.new("UICorner")
 				cornerMain.CornerRadius = UDim.new(0, 5)
 				cornerMain.Parent = BackSizeFrame
+				
+				local cornerMain = Instance.new("UICorner")
+				cornerMain.CornerRadius = UDim.new(0, 5)
+				cornerMain.Parent = CmdSettFrame
+				
+				local cornerMain = Instance.new("UICorner")
+				cornerMain.CornerRadius = UDim.new(0, 5)
+				cornerMain.Parent = CmdSettBackFrame
 				
 				local cornerMain = Instance.new("UICorner")
 				cornerMain.CornerRadius = UDim.new(0, 5)
@@ -238,3 +278,31 @@ end)
 ReplicatedStorage.ex.OnClientEvent:Connect(function()
 	CreateFirstUi()
 end)
+
+
+-- Compilator
+
+local function GetNewLine()
+	local UserInputService = game:GetService("UserInputService")
+	
+	UserInputService.InputBegan:Connect(function(input)
+
+		local LineCounter = 0
+
+		local function GetLineValue(Counter)
+			return Counter + 1
+		end
+
+		if input.KeyCode == Enum.KeyCode.KeypadEnter then
+			LineCounter = GetLineValue(LineCounter)
+
+			local Line = Instance.new("TextBox")
+			Line.Name = "Line" .. LineCounter
+			Line.Size = UDim2.fromScale(1, 0.1)
+			Line.TextScaled = true
+			Line.TextXAlignment = Enum.TextXAlignment.Left
+		end
+		
+	end)
+	
+end
