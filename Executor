@@ -5,8 +5,6 @@ local StarterGui = game:GetService("StarterGui")
 local localPlayer = Players.LocalPlayer
 local PlayerGui = localPlayer:WaitForChild("PlayerGui")
 
-
-
 local function CreateFirstUi()
 	if PlayerGui:FindFirstChild("ExecutorDisplay") then
 		return
@@ -93,18 +91,18 @@ PlayerGui.ChildAdded:Connect(function(child)
 			local ViewStats = child.ExecutorFrame
 			local Button = ViewStats.Dashbord_Ex.Frame_Setts
 			local frame = ViewStats.Dashbord_Ex.Frame_Track
-			local ScrollingFrame = ViewStats.Frame.Scrolling_sett
 			
-			local SetSize = ScrollingFrame.BackSize_Frame.SetSize_Frame
 			local Dashbord = ViewStats.Dashbord_Ex
 			
 			Button.Activated:Connect(function()
-				local frame = Instance.new("Frame")
-				frame.Size = UDim2.fromScale(1, 1)
 				
-				local cornerMain = Instance.new("UICorner")
-				cornerMain.CornerRadius = UDim.new(0, 5)
-				cornerMain.Parent = frame
+				-- => Principal Frame 
+				
+					local frame = Instance.new("Frame")
+						frame.Name = "BackSett_Frame"
+						frame.Size = UDim2.fromScale(1, 1)
+				
+				-- == Scrolling Frames
 				
 				local ScroolFrame = Instance.new("ScrollingFrame")
 				ScroolFrame.Name = "Scrolling_sett"
@@ -118,10 +116,7 @@ PlayerGui.ChildAdded:Connect(function(child)
 				ScroolFrame.BackgroundTransparency = 1
 				ScroolFrame.Parent = frame
 				
-				local UiList = Instance.new("UIListLayout")
-				UiList.Padding = UDim.new(0, 12)
-				UiList.Parent = ScroolFrame
-				UiList.HorizontalAlignment = Enum.HorizontalAlignment.Center
+				-- == Frames
 				
 				local BackSizeFrame = Instance.new("Frame")
 				BackSizeFrame.Name = "BackSize_Frame"
@@ -130,12 +125,52 @@ PlayerGui.ChildAdded:Connect(function(child)
 				BackSizeFrame.BackgroundTransparency = 0.4
 				BackSizeFrame.Parent = ScroolFrame
 				
+				local BackTextTypeFrame = Instance.new("Frame")
+				BackTextTypeFrame.Name = "BackTextType_Frame"
+				BackTextTypeFrame.Size = UDim2.fromScale(1, 0.1)
+				BackTextTypeFrame.BackgroundColor3 = Color3.new(0.447059, 0.45098, 0.4)
+				BackTextTypeFrame.BackgroundTransparency = 0.4
+				BackTextTypeFrame.Parent = ScroolFrame
+				
+				local CmdSettFrame = Instance.new("Frame")
+				CmdSettFrame.Name = "CMDsett_Frame"
+				CmdSettFrame.Size = UDim2.fromScale(1, 0.1)
+				CmdSettFrame.BackgroundColor3 = Color3.new(0.447059, 0.45098, 0.4)
+				CmdSettFrame.BackgroundTransparency = 0.4
+				CmdSettFrame.Parent = ScroolFrame
+				
+				local CmdSettBackFrame = Instance.new("Frame")
+				CmdSettBackFrame.Name = "ChangeCMDSett_Frame"
+				CmdSettBackFrame.Size = UDim2.fromScale(0.3, 0.9)
+				CmdSettBackFrame.Position = UDim2.fromScale(0.7, 0.5)
+				CmdSettBackFrame.AnchorPoint = Vector2.new(0.5, 0.5)
+				CmdSettBackFrame.Parent = CmdSettFrame
+				
+				local SetTextTypeFrame = Instance.new("Frame")
+				SetTextTypeFrame.Name = "SetTextType_Frame"
+				SetTextTypeFrame.Size = UDim2.fromScale(0.3, 0.9)
+				SetTextTypeFrame.AnchorPoint = Vector2.new(0.5, 0.5)
+				SetTextTypeFrame.Position = UDim2.fromScale(0.7, 0.5)
+				SetTextTypeFrame.Parent = BackTextTypeFrame
+				
 				local SetSizeFrame = Instance.new("Frame")
 				SetSizeFrame.Name = "SetSize_Frame"
 				SetSizeFrame.Size = UDim2.fromScale(0.3, 0.9)
 				SetSizeFrame.AnchorPoint = Vector2.new(0.5, 0.5)
 				SetSizeFrame.Position = UDim2.fromScale(0.7, 0.5)
-					SetSizeFrame.Parent = BackSizeFrame
+				SetSizeFrame.Parent = BackSizeFrame
+		
+				-- == TextLabels
+				
+				local SetTextTypeT_Label = Instance.new("TextLabel")
+				SetTextTypeT_Label.Name = "TextType_Label"
+				SetTextTypeT_Label.Text = "Size"
+				SetTextTypeT_Label.Font = Enum.Font.FredokaOne	
+				SetTextTypeT_Label.TextScaled = true
+				SetTextTypeT_Label.TextColor3 = Color3.new(1, 1, 1)
+				SetTextTypeT_Label.Size = UDim2.fromScale(1, 1)
+				SetTextTypeT_Label.BackgroundTransparency = 1
+				SetTextTypeT_Label.Parent = SetTextTypeFrame
 				
 				local TextLabel = Instance.new("TextLabel")
 				TextLabel.Name = "Text_Sett"
@@ -157,28 +192,77 @@ PlayerGui.ChildAdded:Connect(function(child)
 				TextPut.BackgroundTransparency = 1
 				TextPut.Parent = SetSizeFrame
 				
-      local ViewLiens = Instance.new("Frame")
-      ViewLiens.Name = "ViewsLines_Ex"
-      ViewLiens.
-
-
-
-
+				local cmdConfig = Instance.new("TextLabel")
+				cmdConfig.Name = "Cmdconfig"
+				cmdConfig.Text = "Change config"
+				cmdConfig.Font = Enum.Font.FredokaOne	
+				cmdConfig.TextScaled = true
+				cmdConfig.TextColor3 = Color3.new(1, 1, 1)
+				cmdConfig.Size = UDim2.fromScale(1, 1)
+				cmdConfig.BackgroundTransparency = 1
+				cmdConfig.Parent = CmdSettBackFrame
+				
+				local TextTypePut = Instance.new("TextLabel")
+				TextTypePut.Name = "TextTypePut"
+				TextTypePut.Text = "Select text type"
+				TextTypePut.Font = Enum.Font.FredokaOne	
+				TextTypePut.TextScaled = true
+				TextTypePut.TextColor3 = Color3.new(1, 1, 1)
+				TextTypePut.Size = UDim2.fromScale(0.4, 1)
+				TextTypePut.BackgroundTransparency = 1
+				TextTypePut.Parent = BackTextTypeFrame
+				
+				local CmdConfig = Instance.new("TextLabel")
+				CmdConfig.Name = "TextTypePut"
+				CmdConfig.Text = "Config"
+				CmdConfig.Font = Enum.Font.FredokaOne	
+				CmdConfig.TextScaled = true
+				CmdConfig.TextColor3 = Color3.new(1, 1, 1)
+				CmdConfig.Size = UDim2.fromScale(0.4, 1)
+				CmdConfig.BackgroundTransparency = 1
+				CmdConfig.Parent = CmdSettFrame
+				
+				-- == UiCornes
+				
+				local cornerMain = Instance.new("UICorner")
+				cornerMain.CornerRadius = UDim.new(0, 5)
+				cornerMain.Parent = frame
+				
 				local cornerMain = Instance.new("UICorner")
 				cornerMain.CornerRadius = UDim.new(0, 5)
 				cornerMain.Parent = BackSizeFrame
 				
 				local cornerMain = Instance.new("UICorner")
 				cornerMain.CornerRadius = UDim.new(0, 5)
+				cornerMain.Parent = CmdSettFrame
+				
+				local cornerMain = Instance.new("UICorner")
+				cornerMain.CornerRadius = UDim.new(0, 5)
+				cornerMain.Parent = CmdSettBackFrame
+				
+				local cornerMain = Instance.new("UICorner")
+				cornerMain.CornerRadius = UDim.new(0, 5)
 				cornerMain.Parent = SetSizeFrame
 				
+				local cornerMain = Instance.new("UICorner")
+				cornerMain.CornerRadius = UDim.new(0, 5)
+				cornerMain.Parent = BackTextTypeFrame
+				
+				local cornerMain = Instance.new("UICorner")
+				cornerMain.CornerRadius = UDim.new(0, 5)
+				cornerMain.Parent = SetTextTypeFrame
+				
+				-- == UiListLayout's
+				
+				local UiList = Instance.new("UIListLayout")
+				UiList.Padding = UDim.new(0, 12)
+				UiList.HorizontalAlignment = Enum.HorizontalAlignment.Center
+				UiList.Parent = ScroolFrame
+				
 				SetSizeFrame.MouseEnter:Connect(function()
-					local NewSize = 
-					
-					
+				
 					--local GetXArch = ExecutorDisplay.Size.X
 					--local GetYArch = ExecutorDisplay.Size.Y
-					
 					
 				end)
 				
@@ -194,3 +278,31 @@ end)
 ReplicatedStorage.ex.OnClientEvent:Connect(function()
 	CreateFirstUi()
 end)
+
+
+-- Compilator
+
+local function GetNewLine()
+	local UserInputService = game:GetService("UserInputService")
+	
+	UserInputService.InputBegan:Connect(function(input)
+
+		local LineCounter = 0
+
+		local function GetLineValue(Counter)
+			return Counter + 1
+		end
+
+		if input.KeyCode == Enum.KeyCode.KeypadEnter then
+			LineCounter = GetLineValue(LineCounter)
+
+			local Line = Instance.new("TextBox")
+			Line.Name = "Line" .. LineCounter
+			Line.Size = UDim2.fromScale(1, 0.1)
+			Line.TextScaled = true
+			Line.TextXAlignment = Enum.TextXAlignment.Left
+		end
+		
+	end)
+	
+end
